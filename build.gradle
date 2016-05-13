@@ -1,0 +1,25 @@
+apply plugin: 'gradlefx'
+
+buildscript {
+    dependencies {
+        classpath 'org.gradlefx:gradlefx:0.8.3'
+    }
+}
+
+dependencies {
+    merged 'ru.rcslabs.webcall:client-core-swc:2.2.0-SNAPSHOT@swc'
+}
+
+type = 'swf'
+srcDirs	= ['src']
+frameworkLinkage = 'merged'
+mainClass = 'RTMP2JS.as'
+output = 'RTMP2JS'
+
+additionalCompilerOptions = [
+    '-target-player=11.1',
+    '-swf-version=14',
+    '-debug=false',
+    '-incremental=false',
+    "-define+=WEBCALL::APP_VERSION,'${version}-${project.ext.revision}'"
+]
